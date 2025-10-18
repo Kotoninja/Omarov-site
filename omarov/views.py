@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
 
-def home(request):
-    return render(request, "omarov/home.html")
+def biography(request):
+    return render(request, "omarov/biography.html")
+
+def gallery(request):
+    return render(request,"omarov/gallery.html")
