@@ -1,0 +1,24 @@
+.images {
+    column-count: 8;
+    column-gap: 15px;
+}
+
+.image {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 1200px) {
+    .images { column-count: 6; }
+}
+
+@media (max-width: 768px) {
+    .images { column-count: 4; }
+}
+
+@media (max-width: 480px) {
+    .images { column-count: 2; }
+}
