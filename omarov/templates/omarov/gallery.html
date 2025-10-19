@@ -8,36 +8,19 @@
 {% endblock css %}
 
 {% block content %}
-<div class="images">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image_copy.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/image.png" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_badge.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_eblo.jpg" class="rounded image" alt="...">
-    <img src="http://localhost:8000/media/omarov_zavoz.jpg" class="rounded image" alt="...">
-</div>
+<button type="button" class="btn btn-success mb-2 fs-4 rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#addPhoto">Add photo</button>
+
+<form action="{% url 'images:add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include "images/add_photo.html" %}
+</form>
+
+{% if photos %}
+    <div class="images border border-secondary-subtle border-opacity-50 rounded-3 border-3 p-2">
+        {% for photo in photos %}
+        <img src="{{photo.image.url}}" alt="" class="image rounded">
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock content %}

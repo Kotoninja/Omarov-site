@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     ]
     + [
         # Apps
-        "omarov.apps.OmarovConfig"
+        "omarov",
+        "images"
     ]
     + [
         # Third party packages
