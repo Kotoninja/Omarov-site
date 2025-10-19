@@ -4,6 +4,7 @@ from django_resized import ResizedImageField
 from django.utils.text import slugify
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
+from django.urls import reverse
 import os
 
 class Image(BaseModel):
@@ -26,7 +27,9 @@ class Image(BaseModel):
         if not self.slug:
             self.slug = slugify(self.title)
         return super(Image, self).save(*args, **kwargs)
-
+    def get_absolute_url(self):
+        return reverse("images:image_preview", kwargs={"slug": self.slug})
+    
 
 @receiver(pre_delete, sender=Image)
 def delete_img_pre_delete_post(sender, instance, *args, **kwargs):

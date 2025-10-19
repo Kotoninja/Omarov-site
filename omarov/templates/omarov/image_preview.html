@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Image Preview{% endblock title %}
+
+{% block content %}
+<a href="javascript:window.history.back();" class="text-secondary-emphasis text-decoration-none fs-5 mb-4"><i class="bi bi-arrow-left-short"></i>Back</a>
+{% include "images/image_preview.html" %}
+{% endblock content %}
