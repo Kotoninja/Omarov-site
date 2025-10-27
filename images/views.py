@@ -8,11 +8,11 @@ def add(request):
     if request.method == "POST":
         form = AddPhoto(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect(reverse("omarov:gallery"))
-
-    return redirect(reverse("omarov:gallery"))
-
+            image = form.save()
+            image.save()
+            response = render(request,"images/image_frame.html",{"photo":image})
+            response["HX-Trigger"] = "add-photo-success"
+            return response
 
 def image_preview(request, slug):
     image = get_object_or_404(Image, slug=slug)
