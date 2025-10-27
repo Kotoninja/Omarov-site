@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gallery{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'omarov/css/images.css' %}">
+{% endblock css %}
+
+{% block content %}
+<button type="button" class="btn btn-success mb-2 fs-4 rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#add_photo">Add photo</button>
+
+<form hx-post="{% url 'images:add' %}"
+    hx-target="#images_list"
+    hx-swap="afterbegin"
+    hx-on:add-photo-success="this.reset(); this.querySelector('img').src = ''; bootstrap.Modal.getInstance(document.getElementById('add_photo')).hide()"
+    method="post"
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include "images/add_photo.html" %}
+</form>
+
+
+<div class="images border border-secondary-subtle border-opacity-50 rounded-3 border-3 p-2" id="images_list">
+    {% for photo in photos %}
+        {% include "images/image_frame.html" %}
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
